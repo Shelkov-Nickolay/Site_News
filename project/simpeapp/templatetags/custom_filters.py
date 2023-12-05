@@ -7,7 +7,7 @@ register = template.Library()
 
 @register.filter()
 def censor(text):
-    variants = ['усь', 'кот', 'пони', 'сочи', 'балка', 'просто']
+    variants = ['усь', 'кот', 'пони', 'сочи', 'балка', 'просто', 'намек']
 
     ln = len(variants)
     filtred_text = ''

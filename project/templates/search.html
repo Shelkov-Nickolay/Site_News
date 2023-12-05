@@ -8,10 +8,10 @@ News
 
 {% block content %}
     <h1>Новости</h1>
-    <hr>
-    {% if perms.simpeapp.add_news %}
-    <a href="{% url 'news_create' %}">Добавить товар</a>
-    {% endif %}
+    <form action="" method="get">
+       {{ filterset.form.as_p }}
+       <input type="submit" value="Найти" />
+   </form>
     {% if news %}
         <div style="text-align: center;">
         <table cellpadding = '13' style="font-size: 20px;" >

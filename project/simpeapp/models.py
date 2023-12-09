@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 
 class Category(models.Model):
@@ -28,6 +29,11 @@ class News(models.Model):
         on_delete=models.CASCADE,
         related_name='products',
     )
+    category = models.ForeignKey(
+        to='Category',
+        on_delete=models.CASCADE,
+        related_name='products',
+    )
 
     def __str__(self):
         return f'{self.name.title()}...: {self.text}'
@@ -46,3 +52,17 @@ class Author(models.Model):
 
     def __str__(self):
         return self.name.title()
+
+
+class Subscription(models.Model):
+    user = models.ForeignKey(
+        to=User,
+        on_delete=models.CASCADE,
+        related_name='subscriptions',
+    )
+    category = models.ForeignKey(
+        to='Category',
+        on_delete=models.CASCADE,
+        related_name='subscriptions',
+    )
+

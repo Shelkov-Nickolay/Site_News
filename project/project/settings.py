@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.yandex',
+    "django_apscheduler",
 ]
 
 SITE_ID = 1
@@ -139,7 +140,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.yandex.ru'
@@ -148,5 +149,11 @@ EMAIL_HOST_USER = "Skoll-3108@yandex.ru"
 EMAIL_HOST_PASSWORD = "ilrryqzjwdplbkbw"
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
+SERVER_EMAIL = 'Skoll-3108@yandex.ru'
+
+MANAGERS = (
+    ('Manager 1', 'shelkov.nickolay@mail.ru'),
+    ('Manager 2', 'kolya321lol654@gamil.com'),
+)
 
 DEFAULT_FROM_EMAIL = "Skoll-3108@yandex.ru"

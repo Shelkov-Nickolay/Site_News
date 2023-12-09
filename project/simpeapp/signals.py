@@ -25,7 +25,7 @@ def product_created(instance, created, **kwargs):
     html_content = (
         f'Заголовок: {instance.name}\n'
         f'Текст: {instance.text}\n\n'
-        f'<a href="http://127.0.0.1{instance.get_absolute_url()}">'
+        f'<a href="http://127.0.0.1:8000{instance.get_absolute_url()}">'
         f'Ссылка на новость</a>'
     )
     for email in emails:

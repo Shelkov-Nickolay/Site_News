@@ -5,7 +5,8 @@ News
 
 {% load custom_filters %}
 {% load custom_tags %}
-
+{% load cache %}
+{% cache 30 content %}
 {% block content %}
     <h1>Новости</h1>
     <hr>
@@ -57,4 +58,4 @@ News
        {% endif %}
    {% endif %}
 {% endblock content %}
-
+{% endcache %}

@@ -5,7 +5,8 @@ News
 {% endblock title %}
 
 {% load custom_filters %}
-
+{% load cache %}
+{% cache 30 content %}
 {% block content %}
     <h1>{{ news.name|censor }}</h1>
     <hr>
@@ -16,3 +17,4 @@ News
         <font size="4">{{ news.dateCreation|date:'d M Y' }}</font>
     </P>
 {% endblock content %}
+{% endcache %}

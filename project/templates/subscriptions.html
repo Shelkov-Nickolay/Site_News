@@ -4,6 +4,8 @@
 Subscriptions
 {% endblock title %}
 
+{% load cache %}
+{% cache 30 content %}
 {% block content %}
     {% for category in categories  %}
         <p>
@@ -23,3 +25,4 @@ Subscriptions
         </p>
     {% endfor %}
 {% endblock content %}
+{% endcache %}

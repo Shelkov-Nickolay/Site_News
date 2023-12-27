@@ -1,5 +1,7 @@
 {% extends 'flatpages/default.html' %}
 
+{% load cache %}
+{% cache 30 content %}
 {% block content %}
 <h1>Удаление товара</h1>
 <hr>
@@ -9,3 +11,4 @@
     <input type="submit" value="Удалить" />
 </form>
 {% endblock content %}
+{% endcache %}

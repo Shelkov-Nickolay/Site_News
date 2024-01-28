@@ -1,6 +1,14 @@
 from django.contrib import admin
-from .models import *
+from .models import News, Author, Category
 
-admin.site.register(News)
+
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ('name', 'author', 'category')
+    list_filter = ('name', 'author', 'category')
+    search_fields = ('name', 'category')
+
+
+admin.site.register(News, ProductAdmin)
 admin.site.register(Author)
 admin.site.register(Category)
+

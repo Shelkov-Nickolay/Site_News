@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+import logging
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -190,21 +191,21 @@ LOGGING = {
         'general': {
             'level': 'INFO',
             'filters': ['require_debug_true'],
-            'class': 'loging.FileHandler',
+            'class': 'logging.FileHandler',
             'formatter': 'simple_file',
             'filename': 'general.log',
         },
         'errors': {
             'level': 'ERROR',
             'filters': ['require_debug_true'],
-            'class': 'loging.FileHandler',
+            'class': 'logging.FileHandler',
             'formatter': 'errors',
             'filename': 'errors.log',
         },
         'security': {
             'level': 'INFO',
             'filters': ['require_debug_true'],
-            'class': 'loging.FileHandler',
+            'class': 'logging.FileHandler',
             'formatter': 'simple_file',
             'filename': 'security.log',
         },
@@ -222,7 +223,6 @@ LOGGING = {
         },
         'django.request': {
             'handlers': ['mail_admins', 'errors'],
-            'level': 'ERROR',
             'propagate': False,
         },
         'django.server': {

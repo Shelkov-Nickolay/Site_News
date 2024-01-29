@@ -164,20 +164,29 @@ LOGGING = {
         'simple_file': {
             'format': '%(asctime)s %(levelname)s %(module)s %(message)s'
         },
+        'warning': {
+            'format': '%(asctime)s %(levelname)s %(message)s %(pathname)s'
+        },
         'errors': {
+            'format': '%(asctime)s %(levelname)s %(message)s %(pathname)s %(exc_info)s'
+        },
+        'mail': {
             'format': '%(asctime)s %(levelname)s %(message)s %(pathname)s'
         },
     },
 
     'filters': {
-        'require_debug_true': {
-            '()': 'django.utils.log.RequireDebugTrue',
+        "require_debug_false": {
+            "()": "django.utils.log.RequireDebugFalse",
+        },
+        "require_debug_true": {
+            "()": "django.utils.log.RequireDebugTrue",
         },
     },
 
     'handlers': {
         'console_info': {
-            'level': 'INFO',
+            'level': 'DEBUG',
             'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',
             'formatter': 'simple'
@@ -186,39 +195,46 @@ LOGGING = {
             'level': 'WARNING',
             'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',
+            'formatter': 'warning',
+        },
+        'console_error': {
+            'level': 'ERROR',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
             'formatter': 'errors',
         },
         'general': {
             'level': 'INFO',
-            'filters': ['require_debug_true'],
+            'filters': ['require_debug_false'],
             'class': 'logging.FileHandler',
             'formatter': 'simple_file',
             'filename': 'general.log',
         },
         'errors': {
             'level': 'ERROR',
-            'filters': ['require_debug_true'],
+            'filters': ['require_debug_false'],
             'class': 'logging.FileHandler',
             'formatter': 'errors',
             'filename': 'errors.log',
         },
         'security': {
             'level': 'INFO',
-            'filters': ['require_debug_true'],
+            'filters': ['require_debug_false'],
             'class': 'logging.FileHandler',
             'formatter': 'simple_file',
             'filename': 'security.log',
         },
         'mail_admins': {
             'level': 'ERROR',
+            'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler',
-            'formatter': 'errors',
+            'formatter': 'mail',
         }
     },
 
     'loggers': {
         'django': {
-            'handlers': ['console_info', 'console_warning', 'general'],
+            'handlers': ['console_info', 'console_warning', 'console_error', 'general'],
             'propagate': True,
         },
         'django.request': {
@@ -237,9 +253,10 @@ LOGGING = {
             'handlers': ['errors'],
             'propagate': False,
         },
-        'django.security': {
+        'django.security.DisallowedHost': {
             'handlers': ['security'],
             'propagate': False,
         },
     }
 }
+

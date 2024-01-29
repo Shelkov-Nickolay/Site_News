@@ -6,10 +6,26 @@ News
 {% load custom_filters %}
 {% load custom_tags %}
 {% load cache %}
+{% load i18n %}
 
 {% cache 30 content %}
 {% block content %}
-    <h1>Поиск</h1>
+    <form action="{% url 'set_language' %}" method="POST"> {% csrf_token %} <!-- Не забываем по csrf_token для POST запросов -->
+        <input type="hidden" name="next" value="{{ redirect_to }}">
+            {% get_current_language as LANGUAGE_CODE %}
+        <select name="language" id="">
+            {% get_available_languages as LANGUAGES %} <!-- получаем языки -->
+            {% get_language_info_list for LANGUAGES as languages %} <!-- Помещаем их в список languages -->
+
+            {% for language in languages %} <!-- Итерируясь по списку, выводим их название на языке пользователя и код -->
+                <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected {% endif %}>
+                    {{ language.name_local }} - {{ language.code }}
+                </option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="set">
+    </form>
+    <h1>{% trans "Поиск" %}</h1>
     <form action="" method="get">
        {{ filterset.form.as_p }}
        <input type="submit" value="Найти" />
@@ -23,14 +39,14 @@ News
                 <td>{{ post.dateCreation|date:'d M Y'  }}</td>
                 <td>{{ post.text|truncatechars:20|censor }}</td>
                 {% if perms.simpeapp.change_news or perms.simpeapp.delete_news %}
-                <td>Действия
+                <td>{% trans "Действия" %}
                     <br>
                 {% endif %}
                 {% if perms.simpeapp.change_news %}
-                    <a href="{% url 'news_update' post.id %}">Изменить</a>
+                    <a href="{% url 'news_update' post.id %}">{% trans "Изменить" %}</a>
                     {% endif %}
                     {% if perms.simpeapp.delete_news %}
-                    <a href="{% url 'news_delete' post.id %}">Удалить</a>
+                    <a href="{% url 'news_delete' post.id %}">{% trans "Удалить" %}</a>
                     {% endif %}
                 </td>
             </tr>

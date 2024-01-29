@@ -1,6 +1,7 @@
 from django_filters import FilterSet, DateTimeFilter
 from .models import News
 from django.forms import DateTimeInput
+from django.utils.translation import gettext as _
 
 
 class NewsFilter(FilterSet):
@@ -13,10 +14,9 @@ class NewsFilter(FilterSet):
         ),
     )
 
-
     class Meta:
         model = News
         fields = {
             'name': ['icontains'],
-            'categoryType': ['exact'],
+            'category': ['exact'],
         }

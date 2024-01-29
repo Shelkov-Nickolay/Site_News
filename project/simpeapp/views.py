@@ -1,3 +1,5 @@
+from django.http import HttpResponse
+from django.views import View
 from django.views.generic import (
     ListView, DetailView, CreateView, UpdateView, DeleteView
 )
@@ -11,6 +13,26 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
 from django.core.cache import cache
+from django.utils import timezone
+from django.shortcuts import redirect
+import pytz
+
+
+class Index(View):
+    def get(self, request):
+        models = News.objects.all()
+
+        context = {
+            'models': models,
+            'current_time': timezone.localtime(timezone.now()),
+            'timezones': pytz.common_timezones
+        }
+
+        return HttpResponse(render(request, 'index.html', context))
+
+    def post(self, request):
+        request.session['django_timezone'] = request.POST['timezone']
+        return redirect('/')
 
 
 class PostList(ListView):

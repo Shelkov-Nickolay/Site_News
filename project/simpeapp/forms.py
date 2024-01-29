@@ -1,12 +1,13 @@
 from django import forms
 from .models import News
 from django.core.exceptions import ValidationError
+from django.utils.translation import gettext as _
 
 
 class NewsForm(forms.ModelForm):
     class Meta:
         model = News
-        fields = ['name', 'text', 'author']
+        fields = ['name', 'text', 'author', 'category']
 
     def clean(self):
         cleaned_data = super().clean()

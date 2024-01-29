@@ -1,11 +1,12 @@
 from django.db import models
 from django.urls import reverse
+from django.utils.translation import gettext as _
 from django.contrib.auth.models import User
 from django.core.cache import cache
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=64, unique=True)
+    name = models.CharField(max_length=64, unique=True, help_text=_('category name'))
 
     def __str__(self):
         return self.name.title()
@@ -23,8 +24,14 @@ class News(models.Model):
         (NEWS, 'Новость'),
         (ARTICLE, 'Статья'),
     )
-    categoryType = models.CharField(max_length=2, choices=CATEGORY_CHOICES, default=ARTICLE)
-    dateCreation = models.DateTimeField(auto_now_add=True)
+    categoryType = models.CharField(
+        max_length=2,
+        choices=CATEGORY_CHOICES,
+        default=ARTICLE,
+    )
+    dateCreation = models.DateTimeField(
+        auto_now_add=True,
+    )
     author = models.ForeignKey(
         to='Author',
         on_delete=models.CASCADE,

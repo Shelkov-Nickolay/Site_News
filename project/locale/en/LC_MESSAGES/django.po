@@ -1,0 +1,64 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-24 13:31+0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: .\simpeapp\models.py:9
+msgid "category name"
+msgstr ""
+
+#: .\templates\account\email\email_confirmation_message.txt:8
+#, python-format
+msgid ""
+"\n"
+"\n"
+"Вы получили это сообщение, потому что пользователь\n"
+"%(user_display)s указал этот email при регистрации на сайте\n"
+"%(site_domain)s.\n"
+"\n"
+"Для подтверждения регистрации пройдите по ссылке %(activate_url)s\n"
+"\n"
+"Хорошего дня!\n"
+msgstr ""
+
+#: .\templates\articles_edit.html:8
+msgid "Создайте свою статью"
+msgstr "Create your own article"
+
+#: .\templates\news_edit.html:22
+msgid "Создайте свою новость"
+msgstr "Create your own news"
+
+#: .\templates\posts.html:4
+msgid "News"
+msgstr "News"
+
+#: .\templates\search.html:28
+msgid "Поиск"
+msgstr "Search"
+
+#: .\templates\search.html:42
+msgid "Действия"
+msgstr "Actions"
+
+#: .\templates\search.html:46
+msgid "Изменить"
+msgstr "To change"
+
+#: .\templates\search.html:49
+msgid "Удалить"
+msgstr "Delete"
